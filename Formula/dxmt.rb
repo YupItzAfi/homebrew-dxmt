@@ -81,9 +81,17 @@ class Dxmt < Formula
       end
 
       system "meson", "setup", "--cross-file", "build-win#{arch}.txt",
-                               "build_#{arch}", *args, *std_meson_args
+                               "build_#{arch}", *args,
+                               *std_meson_args(prefix: prefix/"libs/wine")
       system "meson", "install", "-C", "build_#{arch}", "--strip"
     end
+
+    if build.with?("native-dlls")
+      mkdir prefix/"libs/wine-native"
+      mv prefix/"libs/wine/system32", prefix/"libs/wine-native/system32"
+      mv prefix/"libs/wine/syswow64", prefix/"libs/wine-native/syswow64"
+    end
+
     rm buildpath.glob(prefix/"**/*.a")
   end
 
