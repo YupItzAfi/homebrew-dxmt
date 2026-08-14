@@ -33,15 +33,14 @@ class Dxmt < Formula
   option "with-build-airconv-for-windows", "Compile airconv to be used in Windows"
   option "with-dxmt-debug", "Enable debug layers"
   option "with-dxmt-native", "Compile DXMT Native instead of Wine DLLs"
-  # option "with-tests", "Enable tests (enable to use \"brew test\")"
-
-  depends_on xcode: :build
+  # option "with-test", "Enable tests (enable to use \"brew test\")"
 
   depends_on "llvm@15" => :build
-  depends_on macos: :sonoma
   depends_on "meson" => :build
   depends_on "mingw-w64" => :build
   depends_on "ninja" => :build
+  depends_on xcode: :build
+  depends_on macos: :sonoma
 
   # TODO: Remove `head` next version. Keep contents.
   if DevelopmentTools.clang_build_version <= 1500 && build.head?
@@ -68,7 +67,7 @@ class Dxmt < Formula
     ]
 
     args << "-Denable_d3d12=#{build.with?("d3d12")}" if build.head?
-    args << "-Dwine_builtin_dll=#{!build.with?("native-dlls")}"
+    args << "-Dwine_builtin_dll=#{build.without?("native-dlls")}"
     args << "-Dbuild_airconv_for_windows=#{build.with?("build-airconv-for-windows")}"
     args << "-Ddxmt_debug=#{build.with?("dxmt-debug")}"
     args << "-Ddxmt_native=#{build.with?("dxmt-native")}"
