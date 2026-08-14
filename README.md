@@ -35,7 +35,7 @@ wine reg add HKCU\\Software\\Wine\\DllOverrides /v dxgi /d native,builtin /f
 
 (Optionally) `wine reg add HKCU\\Software\\Wine\\DllOverrides /v d3d12 /d native,builtin /f`
 
-If your wine installation supports `WINEDLLPATH_PREPEND` variable through a [patch](https://github.com/Gcenx/wine/commit/d27d20014bd184d13e0e76cfc87c398e53ba10aa), then you don't need to do the above copying and can just set the variable to `$(brew --prefix yupitzafi/dxmt/dxmt)` before running your wine program.
+If your wine installation supports `WINEDLLPATH_PREPEND` variable through a [patch](https://github.com/Gcenx/wine/commit/d27d20014bd184d13e0e76cfc87c398e53ba10aa), then you don't need to do the above copying and can just set the variable to `$(brew --prefix dxmt)` before running your wine program.
 
 # Options
 
@@ -59,7 +59,7 @@ Do note:
 * Don't post DXMT specific issues here (for example, a game shows black when running it). Make sure other programs using this DXMT work fine. If no program works when using this specific build, then report here. Otherwise report to [DXMT Discord](https://dxmt.report)
 * No AI/LLM generated posts/ comments, nor assisted by them.
 * If build fails, make sure you put full logs of the build (You can find them in `~/Library/Logs/Homebrew/dxmt`). Also put your `brew doctor` and `brew config` info in triple backticks (like this: \`\`\` Hi \`\`\`)
-* Mention which wine version you're using, along with which options you used to build DXMT)
+* Mention which wine version you're using, along with which options you used to build DXMT
 
 ## Documentation
 
